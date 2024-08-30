@@ -1,16 +1,24 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from kivy.app import App
+from kivy.lang import Builder
+import scrollview  # noqa
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class LargeDataApp(App):
+    adding_data = False
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def build(self):
+        return Builder.load_file("large_data.kv")
+
+    def add_more_data(self):
+        if self.adding_data:
+            return
+        print("adding more data")
+        self.adding_data = True
+        for i in range(100):
+            self.root.data.append({})
+            print("added")
+        self.adding_data = False
+
+
+if __name__ == "__main__":
+    LargeDataApp().run()

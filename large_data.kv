@@ -1,0 +1,27 @@
+<LargeDataList@BoxLayout>
+    canvas:
+        Color:
+            rgba: 1, 0, 0, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+RealRecycleView:
+    id: rv
+    root: root
+    viewclass: "LargeDataList"
+    do_scroll_x: False
+    data: [{}] * 20
+    scroll_distance: 0
+    bar_width: 0
+    on_overscroll_up: app.add_more_data()
+    RecycleBoxLayout:
+        root: root
+        orientation: 'vertical'
+        size_hint_y: None
+        size: self.minimum_size
+        default_size_hint: 1, None
+        # magic value for the default height of the message
+        default_size: 0, "120dp"
+        spacing: "20dp"
+        padding: 0, "20dp", 0, "200dp"

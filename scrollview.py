@@ -2,9 +2,8 @@ from kivy.uix.recycleview import RecycleView
 from kivy.clock import Clock
 from kivy.properties import OptionProperty, BooleanProperty, ObjectProperty, NumericProperty, ListProperty
 from kivy.animation import Animation
-from kivymd.uix.behaviors import StencilBehavior
 
-from Components.effects import LowerScrollEffect, LowerDampedScrollEffect
+from effects import LowerScrollEffect
 
 __all__ = ("LEFT", "RIGHT", "DOWN", "UP", "NULL", "RealRecycleView")
 
@@ -15,10 +14,10 @@ UP = 4  # finger and content moves down (scroll bar moves up) to see the very to
 NULL = 0  # finger or scroll bar or content is not moving
 
 
-class RealRecycleView(RecycleView, StencilBehavior):
+class RealRecycleView(RecycleView):
     do_swipe = BooleanProperty(False)
     swipe_direction = OptionProperty("horizontal", options=["horizontal", "vertical"], allownone=False)
-    effect_cls = ObjectProperty(LowerDampedScrollEffect, allownone=True)
+    effect_cls = ObjectProperty(LowerScrollEffect, allownone=True)
     scroll_distance_traveled = ListProperty([0, 0])  # read only
     scroll_direction = NumericProperty(NULL)  # read only
 
